@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery | Shaik Javeed Ahmed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+            margin: 0;
+            background: #f8f8f8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #fff;
+            background: #333;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html#gallery" class="back-btn">← Back to Home</a>
+
+        <h1 id="galleryTitle">Gallery</h1>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Images will load here -->
+        </div>
+    </div>
+
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+
+    const titleMap = {
+        floor: "Floor Work",
+        granite: "Granite Work",
+        kitchen: "Kitchen Work",
+        bathroom: "Bathroom Tiles Work",
+        wall: "Wall Tiles Work",
+        staircase: "Staircase Granite Work"
+    };
+
+    const galleryTitle = document.getElementById("galleryTitle");
+    const galleryGrid = document.getElementById("galleryGrid");
+
+    galleryTitle.innerText = titleMap[category] || "Gallery";
+
+    const galleryConfig = {
+        floor: {
+            folder: "images/flooring",
+            prefix: "f",
+            count: 32,
+            extension: "jpg"
+        },
+          granite: {
+        folder: "images/granite",
+        prefix: "g",
+        count: 12,
+        extension: "jpg"
+    }
+    };
+
+    if (!galleryConfig[category]) {
+        galleryGrid.innerHTML = "<p>No images available.</p>";
+    } else {
+        const { folder, prefix, count, extension } = galleryConfig[category];
+
+        for (let i = 1; i <= count; i++) {
+            const div = document.createElement("div");
+            div.className = "gallery-item";
+
+            const img = document.createElement("img");
+            img.src = `${folder}/${prefix}${i}.${extension}`;
+            img.alt = `${titleMap[category]} ${i}`;
+
+            div.appendChild(img);
+            galleryGrid.appendChild(div);
+        }
+    }
+</script>
+
+
+</body>
+</html>
