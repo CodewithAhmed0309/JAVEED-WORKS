@@ -1,5 +1,5 @@
 /* =========================================
-   LUXURY DESIGN SYSTEM — NEXT LEVEL
+   LUXURY DESIGN SYSTEM — FINAL GOD LEVEL
 ========================================= */
 
 :root {
@@ -44,36 +44,21 @@ body {
 }
 
 /* ===============================
-   GLOBAL CONTAINER
+   GLOBAL FIX (IMPORTANT)
+================================ */
+section {
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===============================
+   CONTAINER
 ================================ */
 .container {
     width: 92%;
     max-width: 1300px;
     margin: auto;
-}
-
-section {
-    padding: 120px 0;
-    position: relative;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: var(--transition);
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===============================
-   GLASS CARD SYSTEM
-================================ */
-.glass {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    box-shadow: var(--shadow);
 }
 
 /* ===============================
@@ -90,7 +75,17 @@ p {
 }
 
 /* ===============================
-   NAVBAR (ULTRA PREMIUM)
+   GLASS SYSTEM
+================================ */
+.glass {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* ===============================
+   NAVBAR
 ================================ */
 .navbar {
     position: fixed;
@@ -108,7 +103,6 @@ p {
 
 .navbar.scrolled {
     background: rgba(7,11,20,0.92);
-    transform: translateY(-2px);
 }
 
 .nav-content {
@@ -118,15 +112,9 @@ p {
     padding: 22px 0;
 }
 
-.logo h2 {
-    font-size: 1.6rem;
-    letter-spacing: 1px;
-}
-
 .logo span {
     color: var(--gold);
     font-size: 0.8rem;
-    letter-spacing: 2px;
 }
 
 .nav-menu {
@@ -138,35 +126,16 @@ p {
 .nav-menu a {
     text-decoration: none;
     color: var(--text);
-    font-weight: 500;
+    transition: var(--transition);
     position: relative;
-    transition: var(--transition);
-}
-
-/* animated underline glow */
-.nav-menu a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    width: 0;
-    height: 2px;
-    transform: translateX(-50%);
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    transition: var(--transition);
 }
 
 .nav-menu a:hover {
     color: var(--gold);
-    transform: translateY(-2px);
-}
-
-.nav-menu a:hover::after {
-    width: 100%;
 }
 
 /* ===============================
-   HERO (CINEMATIC + ANIMATED)
+   HERO (FIXED BUTTON ALIGNMENT)
 ================================ */
 .hero {
     min-height: 100vh;
@@ -178,53 +147,28 @@ p {
     overflow: hidden;
 
     background:
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
         url('back.jpg');
 
-    background-size: 120%;
+    background-size: cover;
     background-position: center;
-
-    animation: heroZoom 14s infinite alternate ease-in-out;
 }
 
-/* moving glow layer */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right,
-        rgba(212,175,55,0.18),
-        transparent 40%);
-}
-
-/* animated grid */
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 90px 90px;
-    opacity: 0.4;
-}
-
+/* HERO CONTENT */
 .hero-content {
-    position: relative;
-    z-index: 5;
     text-align: center;
-    animation: fadeUp 1s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-tag {
     color: var(--gold);
     letter-spacing: 4px;
     margin-bottom: 20px;
-    font-size: 0.9rem;
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 6vw, 6rem);
+    font-size: clamp(2.8rem,6vw,6rem);
     line-height: 1.1;
     margin-bottom: 25px;
 }
@@ -232,46 +176,40 @@ p {
 .hero-subtitle {
     max-width: 700px;
     margin: auto;
-    font-size: 1.2rem;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
+}
+
+/* 🔥 FIXED BUTTON SYSTEM */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 /* ===============================
-   BUTTONS (MICRO INTERACTION)
+   BUTTONS (STABLE + NO FLOAT)
 ================================ */
 .btn {
-    padding: 16px 34px;
-    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 32px;
+    border-radius: 999px;
+
     text-decoration: none;
     font-weight: 600;
-    position: relative;
-    overflow: hidden;
+
     transition: var(--transition);
-}
-
-/* shimmer effect */
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg,
-        transparent,
-        rgba(255,255,255,0.2),
-        transparent);
-    transition: 0.6s;
-}
-
-.btn:hover::before {
-    left: 100%;
+    white-space: nowrap;
 }
 
 .btn-primary {
     background: linear-gradient(135deg, var(--gold), var(--gold2));
-    color: #000;
-    box-shadow: 0 15px 50px rgba(212,175,55,0.3);
+    color: black;
 }
 
 .btn-primary:hover {
@@ -280,18 +218,18 @@ p {
 
 .btn-secondary {
     border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.04);
     color: white;
+    background: rgba(255,255,255,0.04);
 }
 
 .btn-secondary:hover {
+    transform: translateY(-6px);
     border-color: var(--gold);
     color: var(--gold);
-    transform: translateY(-6px);
 }
 
 /* ===============================
-   OWNER PROFILE (GLASS LUXURY)
+   OWNER PROFILE
 ================================ */
 .owner-profile {
     margin-top: 60px;
@@ -304,8 +242,6 @@ p {
 
     background: var(--glass);
     border: 1px solid var(--border);
-
-    backdrop-filter: blur(14px);
 }
 
 .owner-profile img {
@@ -314,15 +250,10 @@ p {
     border-radius: 50%;
     border: 3px solid var(--gold);
     object-fit: cover;
-    transition: var(--transition);
-}
-
-.owner-profile:hover img {
-    transform: scale(1.08);
 }
 
 /* ===============================
-   STATS (FLOATING CARDS)
+   STATS
 ================================ */
 .stats-grid {
     display: grid;
@@ -337,13 +268,6 @@ p {
 
     background: var(--glass);
     border: 1px solid var(--border);
-
-    transition: var(--transition);
-}
-
-.stat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
 }
 
 .stat-card h2 {
@@ -352,7 +276,7 @@ p {
 }
 
 /* ===============================
-   SERVICES (ULTRA LUXE CARDS)
+   SERVICES (FIXED GRANITE CARDS)
 ================================ */
 .services-grid {
     display: grid;
@@ -367,29 +291,14 @@ p {
     background: var(--glass);
     border: 1px solid var(--border);
 
-    transition: var(--transition);
     position: relative;
     overflow: hidden;
-}
 
-/* glowing border effect */
-.service-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius);
-    padding: 1px;
-    background: linear-gradient(135deg, transparent, var(--gold), transparent);
-    opacity: 0;
     transition: var(--transition);
 }
 
 .service-card:hover {
     transform: translateY(-14px) scale(1.02);
-}
-
-.service-card:hover::before {
-    opacity: 1;
 }
 
 .service-icon {
@@ -398,19 +307,15 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
 
+    border-radius: 20px;
     background: rgba(212,175,55,0.08);
+
     margin-bottom: 25px;
 }
 
-.service-icon i {
-    color: var(--gold);
-    font-size: 2rem;
-}
-
 /* ===============================
-   GALLERY (ZOOM + DARK LUXURY)
+   GALLERY (FIXED IMAGE ISSUE)
 ================================ */
 .gallery-grid {
     display: grid;
@@ -419,6 +324,7 @@ p {
 }
 
 .gallery-item {
+    height: 280px;
     border-radius: 24px;
     overflow: hidden;
     position: relative;
@@ -428,6 +334,7 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.6s ease;
 }
 
@@ -435,22 +342,8 @@ p {
     transform: scale(1.12);
 }
 
-/* overlay glow */
-.gallery-item::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-    opacity: 0;
-    transition: 0.4s;
-}
-
-.gallery-item:hover::after {
-    opacity: 1;
-}
-
 /* ===============================
-   CONTACT (GLASS FORM)
+   CONTACT
 ================================ */
 .contact-content {
     display: grid;
@@ -466,6 +359,7 @@ p {
     border: 1px solid var(--border);
 }
 
+/* FORM FIX */
 .form-group input,
 .form-group textarea {
     width: 100%;
@@ -476,13 +370,6 @@ p {
     border: 1px solid rgba(255,255,255,0.08);
 
     color: white;
-    transition: var(--transition);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--gold);
-    transform: translateY(-3px);
 }
 
 /* ===============================
@@ -505,36 +392,11 @@ p {
 
     font-size: 2rem;
 
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-
-    transition: var(--transition);
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.12) translateY(-6px);
+    z-index: 999;
 }
 
 /* ===============================
-   ANIMATIONS
-================================ */
-@keyframes heroZoom {
-    from { background-size: 115%; }
-    to { background-size: 125%; }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===============================
-   RESPONSIVE
+   RESPONSIVE FIX
 ================================ */
 @media(max-width:992px){
 
@@ -548,9 +410,12 @@ p {
         top: 80px;
         left: -100%;
         width: 100%;
+
         flex-direction: column;
         background: rgba(7,11,20,0.98);
+
         padding: 40px 0;
+        transition: var(--transition);
     }
 
     .nav-menu.active {
@@ -558,6 +423,118 @@ p {
     }
 
     .hero-title {
-        font-size: 2.8rem;
+        font-size: 2.6rem;
     }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+/* =========================================
+   UNIFIED BUTTON SYSTEM (BTN + FILTER BTN)
+========================================= */
+
+.btn,
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 26px;
+    border-radius: 999px;
+
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: all 0.45s cubic-bezier(0.22,1,0.36,1);
+
+    white-space: nowrap;
+}
+
+/* =========================================
+   BASE GLASS STYLE (FILTER + SECONDARY LOOK)
+========================================= */
+
+.filter-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+
+    backdrop-filter: blur(14px);
+}
+
+/* =========================================
+   PRIMARY BUTTON (GOLD LUXURY)
+========================================= */
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+
+    border: none;
+
+    box-shadow: 0 15px 50px rgba(212,175,55,0.25);
+}
+
+/* =========================================
+   HOVER SYSTEM (UNIFIED PREMIUM FEEL)
+========================================= */
+
+.btn:hover,
+.filter-btn:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: rgba(212,175,55,0.5);
+}
+
+/* gold glow hover for both */
+.btn::after,
+.filter-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(212,175,55,0.25),
+        transparent 70%
+    );
+
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.btn:hover::after,
+.filter-btn:hover::after {
+    opacity: 1;
+}
+
+/* =========================================
+   ACTIVE STATE (FOR FILTER BUTTONS)
+========================================= */
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+    border: none;
+
+    box-shadow: 0 10px 40px rgba(212,175,55,0.3);
+}
+
+/* =========================================
+   CLICK FEEL (MICRO INTERACTION)
+========================================= */
+
+.btn:active,
+.filter-btn:active {
+    transform: scale(0.96);
 }
