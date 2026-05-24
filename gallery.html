@@ -1,118 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
 
-    <title>Gallery | JAVEED WORKS</title>
+        <title>Gallery | JAVEED WORKS</title>
 
-    <link rel="stylesheet"
-        href="styles.css">
+        <link rel="stylesheet"
+            href="styles.css">
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <section>
+        <section>
 
-        <div class="container">
+            <div class="container">
 
-            <a href="index.html"
-                class="btn btn-secondary">
+                <a href="index.html"
+                    class="btn btn-secondary">
 
-                ← Back Home
+                    ← Back Home
 
-            </a>
+                </a>
 
-            <br><br>
+                <br><br>
 
-            <div class="section-header">
+                <div class="section-header">
 
-                <h1 id="galleryTitle"
-                    class="section-title">
+                    <h1 id="galleryTitle"
+                        class="section-title">
 
-                    Gallery
+                        Gallery
 
-                </h1>
+                    </h1>
 
-                <div class="title-underline"></div>
+                    <div class="title-underline"></div>
+
+                </div>
+
+                <div class="gallery-grid"
+                    id="galleryGrid">
+
+                </div>
 
             </div>
 
-            <div class="gallery-grid"
-                id="galleryGrid">
+        </section>
 
-            </div>
+        <script>
 
-        </div>
+            const params =
+                new URLSearchParams(window.location.search);
 
-    </section>
+            const category =
+                params.get("category");
 
-    <script>
+            const galleryTitle =
+                document.getElementById("galleryTitle");
 
-        const params =
-            new URLSearchParams(window.location.search);
+            const galleryGrid =
+                document.getElementById("galleryGrid");
 
-        const category =
-            params.get("category");
+            const titleMap = {
 
-        const galleryTitle =
-            document.getElementById("galleryTitle");
+                floor: "Flooring Work",
 
-        const galleryGrid =
-            document.getElementById("galleryGrid");
+                granite: "Granite Work"
 
-        const titleMap = {
+            };
 
-            floor: "Flooring Work",
+            galleryTitle.innerText =
+                titleMap[category] || "Gallery";
 
-            granite: "Granite Work"
+            const galleryConfig = {
 
-        };
+                floor: {
+                    folder: "images/flooring",
+                    prefix: "f",
+                    count: 32
+                },
 
-        galleryTitle.innerText =
-            titleMap[category] || "Gallery";
+                granite: {
+                    folder: "images/granite",
+                    prefix: "g",
+                    count: 12
+                }
 
-        const galleryConfig = {
+            };
 
-            floor: {
-                folder: "images/flooring",
-                prefix: "f",
-                count: 32
-            },
+            const config =
+                galleryConfig[category];
 
-            granite: {
-                folder: "images/granite",
-                prefix: "g",
-                count: 12
+            for (let i = 1; i <= config.count; i++) {
+
+                const item =
+                    document.createElement("div");
+
+                item.className = "gallery-item";
+
+                item.innerHTML = `
+                    <img src="${config.folder}/${config.prefix}${i}.jpg">
+                `;
+
+                galleryGrid.appendChild(item);
+
             }
 
-        };
+        </script>
 
-        const config =
-            galleryConfig[category];
+    </body>
 
-        for (let i = 1; i <= config.count; i++) {
-
-            const item =
-                document.createElement("div");
-
-            item.className = "gallery-item";
-
-            item.innerHTML = `
-                <img src="${config.folder}/${config.prefix}${i}.jpg">
-            `;
-
-            galleryGrid.appendChild(item);
-
-        }
-
-    </script>
-
-</body>
-
-</html>
+    </html>
